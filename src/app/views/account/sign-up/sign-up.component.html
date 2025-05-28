@@ -61,12 +61,16 @@
             @else if (form.controls['repeatPassword'].hasError('maxlength')) {
                 <p class="text-danger"> Senha deve ter no máximo {{passwordMaxLength}}</p>
             }
-            @else if (true) {}
+            @else if (!arePasswordsValid()) {
+                <p class="text-danger"> As senhas não são iguais</p>
+            }
 
         </mat-form-field>
 
         <div class="text-center">
-            <button mat-raised-button color="primary">Criar</button>
+            <button [disabled]="!validateFields()" mat-raised-button color="primary">
+                Criar
+            </button>
         </div>
 
         <hr>

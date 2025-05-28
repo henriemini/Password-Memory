@@ -64,5 +64,47 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  validateFields() : boolean{
+/*
+    if(!this.form.controls['fullname'].valid){
+      return false;
+    }
+
+    if(!this.form.controls['email'].valid){
+      return false;
+    }
+
+    if(!this.form.controls['password'].valid){
+      return false;
+    }
+
+    if(!this.form.controls['repeatPassword'].valid){
+      return false;
+    }
+
+    return true;
+    */
+    
+    let isFullnameValid = this.form.controls['fullname'].valid;
+    let isEmailValid = this.form.controls['email'].valid;
+    let isPasswordValid = this.form.controls['password'].valid;
+    let isRepeatPasswordValid = this.form.controls['repeatPassword'].valid;
+
+    if(!this.arePasswordsValid()){
+      return false;
+    }
+
+    return isFullnameValid
+        && isEmailValid
+        && isPasswordValid
+        && isRepeatPasswordValid;
+
+  }
+
+  arePasswordsValid() : boolean{
+
+    return this.form.controls['password'].value === this.form.controls['repeatPassword'].value;
+  }
+
 
 }
