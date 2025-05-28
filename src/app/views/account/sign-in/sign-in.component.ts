@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl, FormControlDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,6 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 
 import * as fontawesome from '@fortawesome/free-solid-svg-icons'
+import { AuthenticationService } from '../../../services/security/authentication.service';
+import { UserCredentialDto } from '../../../domain/dto/user-credential-dto';
 
 @Component({
   selector: 'app-sign-in',
@@ -46,7 +48,7 @@ export class SignInComponent {
 
   isLoginIncorrect: boolean = false;
 
-  constructor(){
+  constructor(private router: Router, private authenticationService: AuthenticationService){
     console.log('sign-in constructor');
   }
 
@@ -61,6 +63,15 @@ export class SignInComponent {
 
   login(){
     console.log('botão de login clicado');
+
+    let credentials: UserCredentialDto ={
+      email: this.email.value!,
+      password: this.password.value!
+    }
+
+    console.log(credentials)
+
+    this.authenticationService.authenticate(credentials);
   }
 
 
