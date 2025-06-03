@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthenticationService {
 
+  fakeAuthentication: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   authenticate(credentials: UserCredentialDto) : Observable<any>{
@@ -22,12 +24,20 @@ export class AuthenticationService {
       password: credentials.password,
     }
 
-    return this.http.post<any>('',body, {headers});
+    if(credentials.email === 'iemini' && credentials.password === 'adm'){
+      this.fakeAuthentication = true;
+    }
+    else{
+      this.fakeAuthentication = false;
+    }
+
+    return this.http.post<any>('http://localhost:8080/authenticate',body, {headers});
   }
 
   isAuthenticated(): boolean{
-
-    return false;
+    console.log('deu certo?');
+    console.log(this.fakeAuthentication);
+    return this.fakeAuthentication;
   }
 
 }

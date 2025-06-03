@@ -71,7 +71,19 @@ export class SignInComponent {
 
     console.log(credentials)
 
-    this.authenticationService.authenticate(credentials);
+    this.authenticationService.authenticate(credentials)
+      .subscribe({
+        next:(value: any) => {
+          //se tudo der certo vem aqui
+          console.log(value);
+
+          this.router.navigate(['']);
+        },
+        error: (err) =>{
+          console.error('ocorreu um erro ao autenticar');
+          console.error(err);
+        }
+      });
   }
 
 

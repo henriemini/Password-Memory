@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "user": [
+    {
+      "id": "1",
+      "fullname": "Henrique Iemini",
+      "email": "iemini@iemini",
+      "password": "adm"
+    },
+    {
+      "id": "2",
+      "fullname": "Henriemini",
+      "email": "henriemini@iemini",
+      "password": "adm"
+    },
+    {
+      "id": "3",
+      "fullname": "Iemini",
+      "email": "mini@iemini",
+      "password": "adm"
+    },
+    {
+      "id": "4",
+      "fullname": "adm",
+      "email": "adm@adm",
+      "password": "adm"
+    }
+  ]
+}
