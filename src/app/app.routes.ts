@@ -10,6 +10,7 @@ import { ProductDetailComponent } from './views/app/product/product-detail/produ
 import { ProductEditComponent } from './views/app/product/product-edit/product-edit.component';
 import { ProductListComponent } from './views/app/product/product-list/product-list.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { authenticationGuard } from './services/security/guard/authentication.guard';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,7 @@ export const routes: Routes = [
     {
         path: '',
         component: MainComponent,
+        canActivate: [authenticationGuard],
         children: [
 
             {

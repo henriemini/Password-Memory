@@ -24,4 +24,10 @@ export class AuthenticationService {
 
     return this.http.post<any>('',body, {headers});
   }
+
+  isAuthenticated(): boolean{
+
+    return false;
+  }
+
 }
