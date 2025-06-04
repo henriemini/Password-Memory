@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserCredentialDto } from '../../domain/dto/user-credential-dto';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ export class AuthenticationService {
       this.fakeAuthentication = false;
     }
 
-    //return this.http.post<any>('http://localhost:8080/authenticate',body, {headers});
-    return this.http.get<any>('http://localhost:3000/user/1'); //iemini@iemini adm
+    //return this.http.post<any>(`http://localhost:8080/authenticate`,body, {headers});
+    return this.http.get<any>(`${environment.authentication_api_endpoint}/user/1`); //iemini@iemini adm
   }
 
   isAuthenticated(): boolean{
