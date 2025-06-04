@@ -24,14 +24,15 @@ export class AuthenticationService {
       password: credentials.password,
     }
 
-    if(credentials.email === 'iemini' && credentials.password === 'adm'){
+    if(credentials.email === 'iemini@iemini' && credentials.password === 'adm'){
       this.fakeAuthentication = true;
     }
     else{
       this.fakeAuthentication = false;
     }
 
-    return this.http.post<any>('http://localhost:8080/authenticate',body, {headers});
+    //return this.http.post<any>('http://localhost:8080/authenticate',body, {headers});
+    return this.http.get<any>('http://localhost:3000/user/1'); //iemini@iemini adm
   }
 
   isAuthenticated(): boolean{

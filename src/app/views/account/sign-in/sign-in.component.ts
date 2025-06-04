@@ -77,7 +77,7 @@ export class SignInComponent {
           //se tudo der certo vem aqui
           console.log(value);
 
-          this.router.navigate(['']);
+          this.router.navigate(['/home']);
         },
         error: (err) =>{
           console.error('ocorreu um erro ao autenticar');
