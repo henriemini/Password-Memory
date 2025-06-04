@@ -55,6 +55,19 @@ export class SignInComponent {
   ngOnInit(): void {
     console.log('NgOninit');
     this.isLoginIncorrect = false;
+
+    //this.loginIfCredentiaslIsValid;
+  }
+
+  loginIfCredentiaslIsValid(){
+    console.log('verificando as credenciais...');
+
+    if(this.authenticationService.isAuthenticated()){
+      console.log('credenciais validas, redirecionando para tela inicial');
+      this.router.navigate(['/']);
+      return;
+    }
+      console.log('credenciais invalidas ou não tem registros no cache');
   }
 
   validateFields(){
@@ -76,6 +89,15 @@ export class SignInComponent {
         next:(value: any) => {
           //se tudo der certo vem aqui
           console.log(value);
+
+          let user: UserCredentialDto = {
+            email: value.email,
+            password: value.password
+          };
+          
+          this.authenticationService.fakeAuthentication=true;
+
+          this.authenticationService.addDataToLocalStorage(user);
 
           this.router.navigate(['/home']);
         },

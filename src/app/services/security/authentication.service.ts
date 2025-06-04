@@ -9,8 +9,6 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthenticationService {
 
-  fakeAuthentication: boolean = false;
-
   constructor(private http: HttpClient) { }
 
   authenticate(credentials: UserCredentialDto) : Observable<any>{
@@ -25,21 +23,32 @@ export class AuthenticationService {
       password: credentials.password,
     }
 
-    if(credentials.email === 'iemini@iemini' && credentials.password === 'adm'){
-      this.fakeAuthentication = true;
-    }
-    else{
-      this.fakeAuthentication = false;
-    }
-
     //return this.http.post<any>(`http://localhost:8080/authenticate`,body, {headers});
     return this.http.get<any>(`${environment.authentication_api_endpoint}/user/1`); //iemini@iemini adm
   }
 
+  fakeAuthentication: boolean = false;
   isAuthenticated(): boolean{
-    console.log('deu certo?');
-    console.log(this.fakeAuthentication);
+    // let email = localStorage.getItem('email');
+
+    // if(email != null){
+    //   console.log(`email encontrado: ${email}`);
+    //   return true;
+    // }
+
+    // return false;
     return this.fakeAuthentication;
+  }
+
+  addDataToLocalStorage(user: UserCredentialDto){
+    console.log('adicionando dados no cache........')
+
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('password', user.password);
+  }
+
+  logout(){
+    localStorage.clear();
   }
 
 }
