@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { firstValueFrom } from 'rxjs';
+import { User } from '../../domain/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,15 @@ export class UserReadService {
 
     // para consumir este metodo basta utilizar a palavra chave: await
     // let X = await userReadService.finalAll();
-    return firstValueFrom(this.http.get<any>(`${environment.api_endpoint}/user`));0
+    return firstValueFrom(this.http.get<any>(`${environment.api_endpoint}/user`));
     }
+
+  findById(id: string): Promise<User>{
+    return firstValueFrom(this.http.get<any>(`${environment.api_endpoint}/user/${id}`));
+  }
+
+  findByEmail(email:string): Promise<User>{
+    return firstValueFrom(this.http.get<any>(`${environment.api_endpoint}/user?email=${email}`));
+  }
 
 }
