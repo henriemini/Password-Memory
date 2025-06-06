@@ -37,7 +37,8 @@ export class AuthenticationService {
     // }
 
     // return false;
-    return this.fakeAuthentication;
+    //return this.fakeAuthentication;
+    return true;
   }
 
   addDataToLocalStorage(user: UserCredentialDto){
