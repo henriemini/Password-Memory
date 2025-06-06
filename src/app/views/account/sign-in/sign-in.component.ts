@@ -99,7 +99,7 @@ export class SignInComponent {
 
           this.authenticationService.addDataToLocalStorage(user);
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/account/my-profile']);
         },
         error: (err) =>{
           console.error('ocorreu um erro ao autenticar');
