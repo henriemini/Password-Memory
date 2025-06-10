@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -17,7 +18,6 @@ import * as fontawesome from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-main',
   imports: [
-
     RouterOutlet,
     MatToolbarModule,
     FormsModule,
@@ -29,7 +29,8 @@ import * as fontawesome from '@fortawesome/free-solid-svg-icons';
     MatExpansionModule,
     MatTooltipModule,
     FontAwesomeModule,
-
+    RouterModule,
+    
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
