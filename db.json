@@ -41,24 +41,21 @@
     },
     {
       "id": "3",
-      "fullname": "Iemini",
-      "email": "mini@iemini",
+      "fullname": "Henrique Iemini",
+      "email": "iemini@iemini",
       "password": "adm"
     },
     {
       "id": "4",
-      "fullname": "adm",
-      "email": "adm@adm",
+      "fullname": "Henrique Iemini",
+      "email": "iemini@iemini",
       "password": "adm"
     },
     {
-      "0": {
-        "id": "5",
-        "fullname": "Teste Iemini",
-        "email": "test@iemini",
-        "password": "adm"
-      },
-      "id": "8bae"
+      "id": "5",
+      "fullname": "Henrique Iemini",
+      "email": "iemini@iemini",
+      "password": "adm"
     }
   ]
 }
