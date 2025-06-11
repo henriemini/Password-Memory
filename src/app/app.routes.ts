@@ -29,7 +29,10 @@ export const routes: Routes = [
         component: MainComponent,
         canActivate: [authenticationGuard],
         children: [
-
+            {
+                path: '',
+                component: HomeComponent
+            },
             {
                 path: 'account/my-profile',
                 component: MyProfileComponent
@@ -41,10 +44,6 @@ export const routes: Routes = [
             {
                 path: 'main',
                 component: MainComponent
-            },
-            {
-                path: 'home',
-                component: HomeComponent
             },
             {
                 path: 'user',

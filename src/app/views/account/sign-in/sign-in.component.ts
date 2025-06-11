@@ -94,12 +94,10 @@ export class SignInComponent {
             email: value.email,
             password: value.password
           };
-          
-          this.authenticationService.fakeAuthentication=true;
 
           this.authenticationService.addDataToLocalStorage(user);
 
-          this.router.navigate(['/account/my-profile']);
+          this.router.navigate(['/']);
         },
         error: (err) =>{
           console.error('ocorreu um erro ao autenticar');

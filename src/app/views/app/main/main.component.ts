@@ -13,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import * as fontawesome from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from '../../../services/security/authentication.service';
 
 
 @Component({
@@ -39,10 +40,14 @@ export class MainComponent {
 
   faFooterIcon = fontawesome.faHeart;
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+  ){}
 
   public logout(){
     console.log("logout clicado");
+    this.authenticationService.logout();
     this.router.navigate(['account/sign-in'])
   }
 

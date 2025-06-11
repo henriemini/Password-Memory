@@ -27,18 +27,15 @@ export class AuthenticationService {
     return this.http.get<any>(`${environment.authentication_api_endpoint}/user/1`); //iemini@iemini adm
   }
 
-  fakeAuthentication: boolean = false;
   isAuthenticated(): boolean{
-    // let email = localStorage.getItem('email');
+    let email = localStorage.getItem('email');
 
-    // if(email != null){
-    //   console.log(`email encontrado: ${email}`);
-    //   return true;
-    // }
+    if(email != null && email === 'iemini@iemini'){
+      console.log(`email encontrado: ${email}`);
+      return true;
+    }
 
-    // return false;
-    //return this.fakeAuthentication;
-    return true;
+    return false;
   }
 
   addDataToLocalStorage(user: UserCredentialDto){

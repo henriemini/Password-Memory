@@ -3,3 +3,5 @@ export const environment = {
     api_endpoint: 'http://localhost:3000',
     authentication_api_endpoint: 'http://localhost:3000'
 }
+
+// npx json-server db.json
