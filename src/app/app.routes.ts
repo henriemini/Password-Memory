@@ -12,6 +12,7 @@ import { ProductListComponent } from './views/app/product/product-list/product-l
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { authenticationGuard } from './services/security/guard/authentication.guard';
 import { UserListComponent } from './views/app/user/user-list/user-list.component';
+import { UserEditComponent } from './views/app/user/user-edit/user-edit.component';
 
 export const routes: Routes = [
     {
@@ -54,21 +55,17 @@ export const routes: Routes = [
                         component: NotFoundComponent
                     },
                     {
-                        path: 'detail',
+                        path: 'detail/:id',
                         component: MyProfileComponent
                     },
                     {
-                        path: 'edit',
-                        component: NotFoundComponent
+                        path: 'edit/:id',
+                        component: UserEditComponent
                     },
                     {
                         path: 'list',
                         component: UserListComponent
-                    },
-                    {
-                        path: 'remove',
-                        component: NotFoundComponent
-                    },
+                    }
 
                 ],
 
