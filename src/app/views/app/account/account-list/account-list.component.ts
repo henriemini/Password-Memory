@@ -22,10 +22,10 @@ export class AccountListComponent  implements OnInit{
 
   fa = fontawesome;
 
-  users: Account[] =[];
+  accounts: Account[] =[];
   
   constructor(
-    private userReadService: AccountReadService, private toast: ToastrService, private accountDeleteService: AccountDeleteService){
+    private accountReadService: AccountReadService, private toast: ToastrService, private accountDeleteService: AccountDeleteService){
 
   }
 
@@ -35,17 +35,17 @@ export class AccountListComponent  implements OnInit{
   async loadUsers() {
     console.log('preparando para obter os usuarios');
 
-    let userList = await this.userReadService.findAll();
+    let accountList = await this.accountReadService.findAll();
 
-    if(userList==null){
+    if(accountList==null){
       console.log('Não achou usuários cadastrados');
       return;
     }
 
-    this.users = userList;
+    this.accounts = accountList;
     
     console.log('usuarios obtidos com sucesso');
-    console.log(userList);
+    console.log(accountList);
   }
 
   async deleteUser(userId: string) {

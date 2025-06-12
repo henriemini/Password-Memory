@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ToastrService } from 'ngx-toastr';
 import { AccountCreateService } from '../../../../services/account/account-create/account-create.service';
 import { Account } from '../../../../domain/model/account';
+import { AccountReadService } from '../../../../services/account/account-read/account-read.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-account-create',
@@ -29,7 +31,7 @@ export class AccountCreateComponent   implements OnInit{
   userId: string = '-1';
   
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,private toast: ToastrService, private router: Router,private accountCreateService: AccountCreateService){
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,private toast: ToastrService, private router: Router,private accountCreateService: AccountCreateService, private accountReadService: AccountReadService) {
     this.inicializeForm();
   }
   
@@ -44,27 +46,37 @@ export class AccountCreateComponent   implements OnInit{
         Validators.required,
         Validators.minLength(this.accountMinLength),
         Validators.maxLength(this.accountMaxLength),
+      ]],
+      username: ['', [
+        Validators.required,
         Validators.minLength(this.usernameMinLength),
         Validators.maxLength(this.usernameMaxLength),
-      ]]
+      ]],
+      password: ['', [
+        Validators.required,
+      ]],
+      confirmPassword: ['', [
+        Validators.required,
+      ]],
     });
   }
 
   async create(){
     console.log('atualizando dados');
 
+    this.userId = await this.accountCreateService.getNextAccountId();
+
     let aux ={
       id: this.userId,
       account: this.form.controls['account'].value,
       username: this.form.controls['username'].value,
       password: this.form.controls['password'].value,
-      confirmPassword: this.form.controls['password'].value,
     }
 
     let account: Account = this.createAccount(aux);
 
     try {
-      // await this.accountCreateService.create(account);
+      await firstValueFrom(this.accountCreateService.create(account));
 
       this.toast.success(`Dados de ${account.account} foram salvos com sucesso.`);
 
@@ -72,13 +84,9 @@ export class AccountCreateComponent   implements OnInit{
     } catch (error: any) {
       this.toast.error(error.message);
     }
-    
-    
-
-    console.log(account);
   }
 
-   createAccount(aux: { id: string; account: string; username: string;  password: string;  confirmPassword: string; }): any{
+   createAccount(aux: { id: string; account: string; username: string;  password: string;}): any{
     
 
     return {
@@ -86,7 +94,6 @@ export class AccountCreateComponent   implements OnInit{
       account: aux.account,
       username: aux.username,
       password: aux.password,
-      confirmPassword: aux.confirmPassword
     };
   }
 
@@ -97,6 +104,12 @@ export class AccountCreateComponent   implements OnInit{
     if(!this.validadeUsername()){
       return false;
     }
+    if(!this.validadePassword()){
+      return false;
+    }
+    if(!this.validadeConfirmPassword()){
+      return false;
+    }
     return true;
   }
   validadeUsername() {
@@ -105,6 +118,19 @@ export class AccountCreateComponent   implements OnInit{
 
   validadeAccountName(){
     return this.form.controls['account'].valid;
+  }
+
+  validadePassword(){
+    return this.form.controls['password'].valid;
+  }
+
+  validadeConfirmPassword(){
+    return this.form.controls['confirmPassword'].valid;
+  }
+
+  arePasswordsValid() : boolean{
+
+    return this.form.controls['password'].value === this.form.controls['confirmPassword'].value;
   }
 
 }

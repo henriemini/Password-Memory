@@ -27,6 +27,41 @@
                 <p class="text-danger">Tem que ter no maximo {{accountMaxLength}}</p>
             }
         </div>
+        <div class="form-group col-12 mt-2">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username" placeholder="">
+
+            @if (form.controls['username'].hasError('required')) {
+                <p class="text-danger">Campo obrigatório</p>
+            }
+
+            @if (form.controls['username'].hasError('minlength')) {
+                <p class="text-danger">Tem que ter no minimo {{usernameMinLength}}</p>
+            }
+
+            @if (form.controls['username'].hasError('maxlength')) {
+                <p class="text-danger">Tem que ter no maximo {{usernameMaxLength}}</p>
+            }
+        </div>
+        <div class="form-group col-12 mt-2">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" formControlName="password" placeholder="">
+
+            @if (form.controls['password'].hasError('required')) {
+                <p class="text-danger">Campo obrigatório</p>
+            }
+        </div>
+        <div class="form-group col-12 mt-2">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="text" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="">
+
+            @if (form.controls['confirmPassword'].hasError('required')) {
+                <p class="text-danger">Campo obrigatório</p>
+            }
+            @else if (!arePasswordsValid()) {
+                <p class="text-danger"> As senhas não são iguais</p>
+            }
+        </div>
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">
                 <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Go to list</a>
