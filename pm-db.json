@@ -3,7 +3,7 @@
     {
       "id": "1",
       "account": "Steam",
-      "username": "iemini@iemini",
+      "username": "iemini1",
       "password": "adm"
     },
     {
@@ -29,6 +29,12 @@
       "account": "Amazon",
       "username": "iemini@iemini",
       "password": "adm"
+    },
+    {
+      "id": "6",
+      "account": "Account Name",
+      "username": "Username",
+      "password": "Password"
     }
   ]
 }

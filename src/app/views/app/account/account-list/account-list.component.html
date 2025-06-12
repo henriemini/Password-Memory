@@ -29,7 +29,7 @@
                 <td>
                     <div class="row">
                         <div class="col-4">
-                            <a class="btn btn-primary" routerLink="/account/details/{{item.id}}">
+                            <a class="btn btn-primary" (click)="openMainKeyDialog(item)">
                                 <fa-icon [icon]="fa.faKey"></fa-icon>
                             </a>
                         </div>

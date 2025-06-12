@@ -62,6 +62,15 @@
                 <p class="text-danger"> As senhas não são iguais</p>
             }
         </div>
+        <hr>
+        <div class="form-group col-12 mt-2">
+            <label for="mainKey">Main Key</label>
+            <input type="text" class="form-control" id="mainKey" formControlName="mainKey" placeholder="">
+
+            @if (form.controls['mainKey'].hasError('required')) {
+                <p class="text-danger">Campo obrigatório</p>
+            }
+        </div>
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">
                 <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Go to list</a>

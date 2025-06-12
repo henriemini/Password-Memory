@@ -12,7 +12,7 @@ export class AccountUpdateService {
 
   constructor(private http: HttpClient, private accountReadService: AccountReadService) { }
 
-  async update(id: string, account: string): Promise<any>{
+  async update(id: string, account: string, username: string): Promise<any>{
 
     let accountToUpdate: Account = await this.accountReadService.findById(id);
 
@@ -22,6 +22,7 @@ export class AccountUpdateService {
     }
 
     accountToUpdate.account = account;
+    accountToUpdate.username = username;
 
     console.log(accountToUpdate.account);
 

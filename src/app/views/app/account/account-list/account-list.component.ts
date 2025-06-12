@@ -61,4 +61,13 @@ export class AccountListComponent  implements OnInit{
     };
   }
 
+  openMainKeyDialog(account: Account) {
+    const mainKey = window.prompt('Digite a Main Key para acessar a conta:', '');
+    if (mainKey !== null && mainKey.trim() !== '') {
+      // Aqui você pode validar a mainKey se quiser
+      window.alert(`Senha da conta "${account.account}": ${account.password}`);
+    } else {
+      this.toast.warning('Main Key não informada!');
+    }
+  }
 }

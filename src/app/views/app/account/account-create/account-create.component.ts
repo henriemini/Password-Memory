@@ -58,11 +58,15 @@ export class AccountCreateComponent   implements OnInit{
       confirmPassword: ['', [
         Validators.required,
       ]],
+      mainKey: ['', [
+        Validators.required,
+      ]],
     });
   }
 
   async create(){
-    console.log('atualizando dados');
+
+    // console.log('mainKey', this.form.controls['mainKey'].value);
 
     this.userId = await this.accountCreateService.getNextAccountId();
 

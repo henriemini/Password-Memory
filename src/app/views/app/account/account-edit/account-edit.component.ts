@@ -22,9 +22,12 @@ export class AccountEditComponent  implements OnInit{
   accountMinLength: number = 2;
   accountMaxLength: number = 40;
 
+  usernameMinLength: number = 2;
+  usernameMaxLength: number = 40;
+
   nomeCompleto: string = '';
 
-  userId: string = '-1';
+  accountId: string = '-1';
   
 
   constructor(private accountReadService: AccountReadService, private route: ActivatedRoute, private formBuilder: FormBuilder,private toast: ToastrService, private router: Router,private accountUpdateService: AccountUpdateService){
@@ -33,8 +36,8 @@ export class AccountEditComponent  implements OnInit{
   
 
   async ngOnInit() {
-    this.userId = await this.route.snapshot.paramMap.get('id')!;
-    this.loadUserById(this.userId);
+    this.accountId = await this.route.snapshot.paramMap.get('id')!;
+    this.loadUserById(this.accountId);
   }
 
   inicializeForm() {
@@ -43,28 +46,35 @@ export class AccountEditComponent  implements OnInit{
         Validators.required,
         Validators.minLength(this.accountMinLength),
         Validators.maxLength(this.accountMaxLength),
-      ]]
+      ]],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(this.usernameMinLength),
+        Validators.maxLength(this.usernameMaxLength),
+      ]],
     });
   }
 
-  async loadUserById(userId: string){
-    let user = await this.accountReadService.findById(userId!);
+  async loadUserById(accountId: string){
+    let account = await this.accountReadService.findById(accountId!);
 
-    this.form.controls['account'].setValue(user.account);
+    this.form.controls['account'].setValue(account.account);
+    this.form.controls['username'].setValue(account.username);
   }
 
   async update(){
     console.log('atualizando dados');
 
-    let user ={
-      id: this.userId,
+    let account ={
+      id: this.accountId,
       account: this.form.controls['account'].value,
+      username: this.form.controls['username'].value,
     }
 
     try {
-      await this.accountUpdateService.update(user.id,user.account);
+      await this.accountUpdateService.update(account.id,account.account, account.username);
 
-      this.toast.success(`Dados de ${user.account} foram salvos com sucesso.`);
+      this.toast.success(`Dados de ${account.account} foram salvos com sucesso.`);
 
       this.router.navigate(['account/list']);
     } catch (error: any) {
@@ -73,7 +83,7 @@ export class AccountEditComponent  implements OnInit{
     
     
 
-    console.log(user);
+    console.log(account);
   }
 
   validadeFields(){
