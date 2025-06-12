@@ -6,6 +6,7 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { AccountListComponent } from './views/app/account/account-list/account-list.component';
 import { AccountEditComponent } from './views/app/account/account-edit/account-edit.component';
 import { MainProfileComponent } from './views/main-profile/main-profile/main-profile.component';
+import { AccountCreateComponent } from './views/app/account/account-create/account-create.component';
 
 export const routes: Routes = [
     {
@@ -34,7 +35,7 @@ export const routes: Routes = [
                 children: [
                     {
                         path: 'create',
-                        component: NotFoundComponent
+                        component: AccountCreateComponent
                     },            
                     {
                         path: 'edit/:id',

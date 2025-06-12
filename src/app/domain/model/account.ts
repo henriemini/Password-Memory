@@ -4,5 +4,4 @@ export interface Account {
     account: string, //fullname
     username: string, // email
     password: string,
-
 }
