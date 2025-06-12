@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountEditComponent } from '../../account/account-edit/account-edit.component';
+import { AccountEditComponent } from './account-edit.component';
 
-describe('UserEditComponent', () => {
+describe('AccountEditComponent', () => {
   let component: AccountEditComponent;
   let fixture: ComponentFixture<AccountEditComponent>;
 

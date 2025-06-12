@@ -6,16 +6,16 @@ import { AccountReadService } from '../../../../services/account/account-read/ac
 import { AccountUpdateService } from '../../../../services/account/account-update/account-update.service';
 
 @Component({
-  selector: 'app-user-edit',
+  selector: 'app-account-edit',
   imports: [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './user-edit.component.html',
-  styleUrl: './user-edit.component.css'
+  templateUrl: './account-edit.component.html',
+  styleUrl: './account-edit.component.css'
 })
-export class UserEditComponent implements OnInit{
+export class AccountEditComponent  implements OnInit{
 
   form: FormGroup;
 

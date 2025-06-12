@@ -3,7 +3,7 @@
         <button mat-icon-button (click) = "sidenav.toggle()" matTooltip = "Menu">
             <mat-icon>menu</mat-icon>
         </button>
-        <span>LDS App</span>
+        <span>Password Memory</span>
         <span class="toolbar-item-spacer"></span>
         <button mat-icon-button matTooltip="Meu perfil" [mat-menu-trigger-for]="myProfile">
             <mat-icon>account_circle</mat-icon>
@@ -35,20 +35,11 @@
                 </mat-list-item >
                 <mat-expansion-panel  [class.mat-elevation-z0]="true">
                     <mat-expansion-panel-header>
-                        Produtos
+                        Account
                     </mat-expansion-panel-header>
                     <mat-nav-list>
-                        <a mat-list-item routerLink="/product/list">Listar</a>
-                        <a mat-list-item routerLink="/product/create">Criar</a>
-                    </mat-nav-list>
-                </mat-expansion-panel>
-                <mat-expansion-panel  [class.mat-elevation-z0]="true">
-                    <mat-expansion-panel-header>
-                        Usuários
-                    </mat-expansion-panel-header>
-                    <mat-nav-list>
-                        <a mat-list-item routerLink="/user/list">Listar</a>
-                        <!-- <a mat-list-item routerLink="/user/create">Criar</a> -->
+                        <a mat-list-item routerLink="/account/list">Listar</a>
+                        <!-- <a mat-list-item routerLink="/account/create">Criar</a> -->
                     </mat-nav-list>
                 </mat-expansion-panel>
             </mat-nav-list>

@@ -1,0 +1,53 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="">Accounts</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">List</li>
+    </ol>
+</nav>
+<h1>Account List</h1>
+<hr>
+
+<div class="mat-elevation-z8">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Account</th>
+                <th scope="col">Username</th>
+                <th scope="col">Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (item of users; track $index) {
+                <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.account}}</td>
+                <td>{{item.username}}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-4">
+                            <a class="btn btn-primary" routerLink="/account/details/{{item.id}}">
+                                <fa-icon [icon]="fa.faKey"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-warning" routerLink="/account/edit/{{item.id}}">
+                                <fa-icon [icon]="fa.faEdit"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-danger" (click)="deleteUser(item.id!)">
+                                <fa-icon [icon]="fa.faRemove"></fa-icon>
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
