@@ -1,18 +1,26 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="">Account</a>
+            <a routerLink="/">Pagina Inicial</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        <li class="breadcrumb-item">
+            <a routerLink="/account/list">Lista</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a routerLink="/account/edit/{{accountId}}">Editar Geral</a>
+        </li>
+        <li class="breadcrumb-item">
+            Editando Informações da Conta
+        </li>
     </ol>
 </nav>
-<h1>Account Editor</h1>
+<h1>Editando Informações da Conta: {{accountName}}</h1>
 <hr>
 
 <form class="form" [formGroup]="form" (ngSubmit)="update()">
     <div class="form-row">
         <div class="form-group col-12 mt-2">
-            <label for="account">Account Name</label>
+            <label for="account">Nome da Conta</label>
             <input type="text" class="form-control" id="account" formControlName="account" placeholder="">
 
             @if (form.controls['account'].hasError('required')) {
@@ -28,7 +36,7 @@
             }
         </div>
         <div class="form-group col-12 mt-2">
-            <label for="username">Username</label>
+            <label for="username">Usuario</label>
             <input type="text" class="form-control" id="username" formControlName="username" placeholder="">
 
             @if (form.controls['username'].hasError('required')) {
@@ -45,8 +53,8 @@
         </div>
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">
-                <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Go to list</a>
-                <button class="btn btn-primary col-2" [disabled]="!validadeFields()">Update</button>
+                <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Voltar a lista</a>
+                <button class="btn btn-primary col-2" [disabled]="!validadeFields()">Atualizar</button>
             </div>
         </div>
     </div>

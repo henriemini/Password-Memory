@@ -1,19 +1,24 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="">Account</a>
+            <a routerLink="/">Pagina Inicial</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        <li class="breadcrumb-item">
+            <a routerLink="/account/list">Lista</a>
+        </li>
+        <li class="breadcrumb-item">
+            Editar Geral
+        </li>
     </ol>
 </nav>
-<h1>Account Editor</h1>
+<h1>Editando a conta {{accountName}}</h1>
 <hr>
 
-<a class="btn btn-secondary col-2 me-4" routerLink="/account/update/password/{{accountId}}">Update password</a>
+<a class="btn btn-secondary col-2 me-4" routerLink="/account/update/password/{{accountId}}">Atualizar senha</a>
 
-<a class="btn btn-secondary col-2 me-4" routerLink="/account/update/all-info/{{accountId}}">Update account name and username</a>
+<a class="btn btn-secondary col-2 me-4" routerLink="/account/update/all-info/{{accountId}}">Atualizar Nome da Conta ou Usuario</a>
 
-<a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Go to list</a>
+<a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Voltar a lista</a>
 
 
 <!-- routerLink="update/password/{{accountId}}" -->

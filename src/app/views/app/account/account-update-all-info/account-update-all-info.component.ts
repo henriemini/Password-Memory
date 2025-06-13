@@ -25,7 +25,7 @@ export class AccountUpdateAllInfoComponent  implements OnInit{
   usernameMinLength: number = 2;
   usernameMaxLength: number = 40;
 
-  nomeCompleto: string = '';
+  accountName: string = '';
 
   accountId: string = '-1';
   
@@ -58,6 +58,7 @@ export class AccountUpdateAllInfoComponent  implements OnInit{
   async loadUserById(accountId: string){
     let account = await this.accountReadService.findById(accountId!);
 
+    this.accountName = account.account;
     this.form.controls['account'].setValue(account.account);
     this.form.controls['username'].setValue(account.username);
   }

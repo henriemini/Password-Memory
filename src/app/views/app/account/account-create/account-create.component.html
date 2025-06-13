@@ -1,18 +1,17 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="">Account</a>
+            <a routerLink="/">Pagina Inicial</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Edit</li>
     </ol>
 </nav>
-<h1>Creating new Account</h1>
+<h1>Criando uma nova conta</h1>
 <hr>
 
 <form class="form" [formGroup]="form" (ngSubmit)="create()">
     <div class="form-row">
         <div class="form-group col-12 mt-2">
-            <label for="account">Account Name</label>
+            <label for="account">Nome da Conta</label>
             <input type="text" class="form-control" id="account" formControlName="account" placeholder="">
 
             @if (form.controls['account'].hasError('required')) {
@@ -28,7 +27,7 @@
             }
         </div>
         <div class="form-group col-12 mt-2">
-            <label for="username">Username</label>
+            <label for="username">Usuario</label>
             <input type="text" class="form-control" id="username" formControlName="username" placeholder="">
 
             @if (form.controls['username'].hasError('required')) {
@@ -44,7 +43,7 @@
             }
         </div>
         <div class="form-group col-12 mt-2">
-            <label for="password">Password</label>
+            <label for="password">Senha</label>
             <input type="text" class="form-control" id="password" formControlName="password" placeholder="">
 
             @if (form.controls['password'].hasError('required')) {
@@ -52,7 +51,7 @@
             }
         </div>
         <div class="form-group col-12 mt-2">
-            <label for="confirmPassword">Confirm Password</label>
+            <label for="confirmPassword">Confirmar Senha</label>
             <input type="text" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="">
 
             @if (form.controls['confirmPassword'].hasError('required')) {
@@ -64,7 +63,7 @@
         </div>
         <hr>
         <div class="form-group col-12 mt-2">
-            <label for="mainKey">Main Key</label>
+            <label for="mainKey">Chave Mestra</label>
             <input type="text" class="form-control" id="mainKey" formControlName="mainKey" placeholder="">
 
             @if (form.controls['mainKey'].hasError('required')) {
@@ -73,8 +72,8 @@
         </div>
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">
-                <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Go to list</a>
-                <button class="btn btn-primary col-2" [disabled]="!validadeFields()">Create</button>
+                <a class="btn btn-secondary col-2 me-4" routerLink="/account/list">Ir para sua lista</a>
+                <button class="btn btn-primary col-2" [disabled]="!validadeFields()">Criar</button>
             </div>
         </div>
     </div>

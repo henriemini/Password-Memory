@@ -18,15 +18,19 @@ import { AccountUpdateService } from '../../../../services/account/account-updat
 export class AccountEditComponent  implements OnInit{
 
   accountId: string = '-1';
+  accountName: string = '';
   
 
-  constructor(private accountReadService: AccountReadService, private route: ActivatedRoute, private formBuilder: FormBuilder,private toast: ToastrService, private router: Router,private accountUpdateService: AccountUpdateService){
+  constructor(private accountReadService: AccountReadService, private route: ActivatedRoute){
 
   }
   
 
   async ngOnInit() {
     this.accountId = await this.route.snapshot.paramMap.get('id')!;
+    
+    let account = await this.accountReadService.findById(this.accountId!);
+    this.accountName = account.account
   }
 
   

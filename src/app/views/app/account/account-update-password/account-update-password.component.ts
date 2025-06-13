@@ -29,7 +29,7 @@ export class AccountUpdatePasswordComponent  implements OnInit{
   usernameMinLength: number = 2;
   usernameMaxLength: number = 40;
 
-  nomeCompleto: string = '';
+  accountName: string = '';
 
   accountId: string = '-1';
   
@@ -41,6 +41,9 @@ export class AccountUpdatePasswordComponent  implements OnInit{
 
   async ngOnInit() {
     this.accountId = await this.route.snapshot.paramMap.get('id')!;
+    
+    let account = await this.accountReadService.findById(this.accountId!);
+    this.accountName = account.account
   }
 
   inicializeForm() {
