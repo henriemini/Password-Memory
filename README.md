@@ -9,5 +9,5 @@ ng s --configuration=development
 
 to-do-list:
 
-    - Add Help Page showing the steps to do
     - Change the look of the site
+    - add a button to export and import the json with passwords to easy in the user
