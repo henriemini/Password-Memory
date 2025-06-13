@@ -12,8 +12,7 @@ export class AccountCreateService {
   constructor(private http: HttpClient, private accountReadService: AccountReadService) { }
 
   create(account: Account){
-    console.log('Creating account:', account);
-    return this.http.post(`${environment.api_endpoint}/account`,account);
+        return this.http.post(`${environment.api_endpoint}/account`,account);
   }
 
   async getNextAccountId(): Promise<string> {

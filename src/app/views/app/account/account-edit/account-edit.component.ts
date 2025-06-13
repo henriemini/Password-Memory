@@ -63,7 +63,6 @@ export class AccountEditComponent  implements OnInit{
   }
 
   async update(){
-    console.log('atualizando dados');
 
     let account ={
       id: this.accountId,
@@ -81,9 +80,6 @@ export class AccountEditComponent  implements OnInit{
       this.toast.error(error.message);
     }
     
-    
-
-    console.log(account);
   }
 
   validadeFields(){

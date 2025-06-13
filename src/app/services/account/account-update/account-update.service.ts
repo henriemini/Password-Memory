@@ -24,8 +24,6 @@ export class AccountUpdateService {
     accountToUpdate.account = account;
     accountToUpdate.username = username;
 
-    console.log(accountToUpdate.account);
-
     return firstValueFrom(this.http.put<any>(`${environment.api_endpoint}/account/${id}`, accountToUpdate));
   }
 

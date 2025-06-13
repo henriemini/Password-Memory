@@ -9,6 +9,8 @@ import { AccountReadService } from '../../../../services/account/account-read/ac
 import { AccountDeleteService } from '../../../../services/account/account-delete/account-delete.service';
 import { Account } from '../../../../domain/model/account';
 
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-account-list',
   imports: [
@@ -33,7 +35,6 @@ export class AccountListComponent  implements OnInit{
     this.loadUsers();
   }
   async loadUsers() {
-    console.log('preparando para obter os usuarios');
 
     let accountList = await this.accountReadService.findAll();
 
@@ -64,10 +65,18 @@ export class AccountListComponent  implements OnInit{
   openMainKeyDialog(account: Account) {
     const mainKey = window.prompt('Digite a Main Key para acessar a conta:', '');
     if (mainKey !== null && mainKey.trim() !== '') {
-      // Aqui você pode validar a mainKey se quiser
-      window.alert(`Senha da conta "${account.account}": ${account.password}`);
+      let decryptPassword = this.decryptPassword(account.password, mainKey.trim());
+      window.alert(`Senha da conta "${account.account}": ${decryptPassword}`);
     } else {
       this.toast.warning('Main Key não informada!');
     }
   }
+
+  decryptPassword(encryptedPassword: string, mainKey: string): string {
+    const bytes = CryptoJS.AES.decrypt(encryptedPassword, mainKey);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 }
+
+
+

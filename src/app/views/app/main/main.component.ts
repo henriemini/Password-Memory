@@ -44,7 +44,6 @@ export class MainComponent {
   ){}
 
   public logout(){
-    console.log("logout clicado");
     this.router.navigate(['account/sign-in'])
   }
 

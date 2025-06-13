@@ -7,6 +7,8 @@ import { Account } from '../../../../domain/model/account';
 import { AccountReadService } from '../../../../services/account/account-read/account-read.service';
 import { firstValueFrom } from 'rxjs';
 
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-account-create',
   imports: [
@@ -66,15 +68,16 @@ export class AccountCreateComponent   implements OnInit{
 
   async create(){
 
-    // console.log('mainKey', this.form.controls['mainKey'].value);
 
     this.userId = await this.accountCreateService.getNextAccountId();
+
+    let encryptPassword = this.encryptPassword(this.form.controls['password'].value, this.form.controls['mainKey'].value);
 
     let aux ={
       id: this.userId,
       account: this.form.controls['account'].value,
       username: this.form.controls['username'].value,
-      password: this.form.controls['password'].value,
+      password: encryptPassword,
     }
 
     let account: Account = this.createAccount(aux);
@@ -136,5 +139,14 @@ export class AccountCreateComponent   implements OnInit{
 
     return this.form.controls['password'].value === this.form.controls['confirmPassword'].value;
   }
+
+  encryptPassword(password: string, mainKey: string): string {
+    return CryptoJS.AES.encrypt(password, mainKey).toString();
+  }
+
+  decryptPassword(encryptedPassword: string, mainKey: string): string {
+  const bytes = CryptoJS.AES.decrypt(encryptedPassword, mainKey);
+  return bytes.toString(CryptoJS.enc.Utf8);
+}
 
 }
