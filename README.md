@@ -2,10 +2,13 @@ Json Server utilizado ->
 
 npx json-server pm-db.json
 
+Environment for the Angular ->
+
+ng s --configuration=development
+
 
 to-do-list:
 
-    - Allow change the Main Key of all passwords on the Main Profile
     - Add Help Page showing the steps to do
-    - Put something on home page
+    - Explain the idea of the project on the Home Page
     - Change the look of the site

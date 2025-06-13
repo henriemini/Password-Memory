@@ -5,7 +5,6 @@ import { HomeComponent } from './views/app/home/home.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { AccountListComponent } from './views/app/account/account-list/account-list.component';
 import { AccountEditComponent } from './views/app/account/account-edit/account-edit.component';
-import { MainProfileComponent } from './views/main-profile/main-profile/main-profile.component';
 import { AccountCreateComponent } from './views/app/account/account-create/account-create.component';
 import { AccountUpdatePasswordComponent } from './views/app/account/account-update-password/account-update-password.component';
 import { AccountUpdateAllInfoComponent } from './views/app/account/account-update-all-info/account-update-all-info.component';
@@ -18,10 +17,6 @@ export const routes: Routes = [
             {
                 path: '',
                 component: HomeComponent
-            },
-            {
-                path: 'account/my-profile',
-                component: MainProfileComponent
             },
             {
                 path: 'help',
