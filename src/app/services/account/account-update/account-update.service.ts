@@ -27,22 +27,18 @@ export class AccountUpdateService {
     return firstValueFrom(this.http.put<any>(`${environment.api_endpoint}/account/${id}`, accountToUpdate));
   }
 
-  async updatePassword(id: string, oldPassword: string, newPassword: string): Promise<any>{
+  async updatePassword(id: string,  newPassword: string): Promise<any>{
+
     let accountToUpdate: Account = await this.accountReadService.findById(id);
+
 
     if(accountToUpdate == null){
       throw new Error('Usuário não encontrado');
     }
 
-    if(oldPassword !== accountToUpdate.password){
-      throw new Error('Senha invalida');
-    }
+    accountToUpdate.password = newPassword;
 
-    let data = {
-      password: newPassword
-    };
-
-    return firstValueFrom(this.http.put<any>(`${environment.api_endpoint}/account/password/${id}`, data));
+    return firstValueFrom(this.http.put<any>(`${environment.api_endpoint}/account/${id}`, accountToUpdate));
   }
 
 }

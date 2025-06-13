@@ -7,6 +7,8 @@ import { AccountListComponent } from './views/app/account/account-list/account-l
 import { AccountEditComponent } from './views/app/account/account-edit/account-edit.component';
 import { MainProfileComponent } from './views/main-profile/main-profile/main-profile.component';
 import { AccountCreateComponent } from './views/app/account/account-create/account-create.component';
+import { AccountUpdatePasswordComponent } from './views/app/account/account-update-password/account-update-password.component';
+import { AccountUpdateAllInfoComponent } from './views/app/account/account-update-all-info/account-update-all-info.component';
 
 export const routes: Routes = [
     {
@@ -27,7 +29,7 @@ export const routes: Routes = [
             },
             {
                 path: 'main',
-                component: MainComponent
+                component: AccountUpdatePasswordComponent
             },
             {
                 path: 'account',
@@ -40,11 +42,19 @@ export const routes: Routes = [
                     {
                         path: 'edit/:id',
                         component: AccountEditComponent
+                    },            
+                    {
+                        path: 'update/password/:id',
+                        component: AccountUpdatePasswordComponent
+                    },            
+                    {
+                        path: 'update/all-info/:id',
+                        component: AccountUpdateAllInfoComponent
                     },
                     {
                         path: 'list',
                         component: AccountListComponent
-                    }
+                    },
 
                 ],
 
