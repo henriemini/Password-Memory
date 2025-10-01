@@ -27,10 +27,15 @@ export class AccountCreateComponent   implements OnInit{
   accountMaxLength: number = 40;
   usernameMinLength: number = 2;
   usernameMaxLength: number = 40;
+  mainKeyMinLength: number = 5;
 
   nomeCompleto: string = '';
 
   userId: string = '-1';
+
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+  showMainKey: boolean = false;
   
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,private toast: ToastrService, private router: Router,private accountCreateService: AccountCreateService, private accountReadService: AccountReadService) {
@@ -62,8 +67,21 @@ export class AccountCreateComponent   implements OnInit{
       ]],
       mainKey: ['', [
         Validators.required,
+        Validators.minLength(this.mainKeyMinLength),
+        this.mainKeyComplexityValidator,
       ]],
     });
+  }
+
+  // Validador customizado para complexidade da chave mestra
+  mainKeyComplexityValidator(control: any) {
+    const value = control.value || '';
+    // Pelo menos 1 maiúscula, 1 minúscula, 1 número, 1 especial
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{5,}$/;
+    if (value && !regex.test(value)) {
+      return { complexity: true };
+    }
+    return null;
   }
 
   async create(){
@@ -148,5 +166,17 @@ export class AccountCreateComponent   implements OnInit{
   const bytes = CryptoJS.AES.decrypt(encryptedPassword, mainKey);
   return bytes.toString(CryptoJS.enc.Utf8);
 }
+
+toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleShowConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+  toggleShowMainKey() {
+    this.showMainKey = !this.showMainKey;
+  }
 
 }
