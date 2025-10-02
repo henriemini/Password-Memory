@@ -28,6 +28,10 @@ export class AccountUpdatePasswordComponent  implements OnInit{
   accountMaxLength: number = 40;
   usernameMinLength: number = 2;
   usernameMaxLength: number = 40;
+  mainKeyMinLength: number = 5;
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+  showMainKey: boolean = false;
 
   accountName: string = '';
 
@@ -56,8 +60,32 @@ export class AccountUpdatePasswordComponent  implements OnInit{
       ]],
       mainKey: ['', [
         Validators.required,
+        Validators.minLength(this.mainKeyMinLength),
+        this.mainKeyComplexityValidator,
       ]],
     });
+  }
+
+  // Validador customizado para complexidade da chave mestra
+  mainKeyComplexityValidator(control: any) {
+    const value = control.value || '';
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{5,}$/;
+    if (value && !regex.test(value)) {
+      return { complexity: true };
+    }
+    return null;
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleShowConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
+  toggleShowMainKey() {
+    this.showMainKey = !this.showMainKey;
   }
 
   async update(){
@@ -95,6 +123,12 @@ export class AccountUpdatePasswordComponent  implements OnInit{
       return false;
     }
     if(!this.validadeConfirmPassword()){
+      return false;
+    }
+    if(!this.form.controls['mainKey'].valid){
+      return false;
+    }
+    if(!this.arePasswordsValid()){
       return false;
     }
     return true;
